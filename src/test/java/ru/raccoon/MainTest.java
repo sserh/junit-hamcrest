@@ -1,10 +1,8 @@
-package example;
+package ru.raccoon;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import ru.raccoon.Main;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.arrayContaining;
@@ -16,17 +14,18 @@ class MainTest {
 
     @ParameterizedTest
     @ValueSource(ints = {2, 4, 100, 30})
-    public void testTrue(int value) {
+    public void isPositiveAndEven(int value) {
         assertTrue(Main.isNeededNumber(value));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {0, -1, 7, 201})
-    public void testFalse(int value) {
+    public void isNotPositiveAndEven(int value) {
         assertFalse(Main.isNeededNumber(value));
     }
+
     @Test
-    void isNeededNumber() {
+    void testIsNeededNumber() {
         final int value_1 = 2; //true, положительное чётное
         final int value_2 = 0; //false, неположительное
         final int value_3 = -1; //false, неположительное, нечётное
@@ -39,13 +38,13 @@ class MainTest {
     }
 
     @Test
-    void wordsCount() {
+    public void testWordsCount_Single() {
         int value = 2;
         assertThat(value, equalTo(Main.wordsCount(" Рабиндранат Тагор")));
     }
 
     @Test
-    public void givenArray_whenCheck_thenContainsElements() {
+    public void testWordsCount_Array() {
         Integer[] array = new Integer[]{Main.wordsCount("Ехали медведи на велосипеде")
                 , Main.wordsCount(" Волки от испуга скушали друг друга ")};
         assertThat(array, arrayContaining(4, 6));
